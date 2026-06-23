@@ -7,6 +7,10 @@ import { canDeleteEmployee, canImportExport, canManageEmployee, filterEmployeesF
 import { isApiUnavailableError } from "../api/apiClient";
 import { employeeApi } from "../api/employeeApi";
 
+const EMPLOYEE_SAVE_RELOAD_FAILED_MESSAGE = "Đã lưu thành công nhưng không thể tải lại danh sách nhân viên";
+const EMPLOYEE_DELETE_RELOAD_FAILED_MESSAGE = "Đã xóa thành công nhưng không thể tải lại danh sách nhân viên";
+const EMPLOYEE_IMPORT_RELOAD_FAILED_MESSAGE = "Đã import thành công nhưng không thể tải lại danh sách nhân viên";
+
 /** Màn hình quản lý nhân viên/Giờ ĐK với filter, CRUD, import/export và scope theo chi nhánh. */
 export default function EmployeePage({currentUser, employees, onEmployeesChange, onLogAction}) {
   // State filter, modal chỉnh sửa, thông báo và tiến trình import của trang.
@@ -73,6 +77,21 @@ export default function EmployeePage({currentUser, employees, onEmployeesChange,
     }
   }, [currentUser, employees.length, filteredEmployees.length, groupFilter, visibleEmployees.length]);
 
+  const clearMessage = () => setMessage(null);
+
+  const reloadEmployeesAfterSuccess = async (fallbackEmployees, reloadFailureMessage) => {
+    try {
+      const reloadedEmployees = await employeeApi.list();
+      onEmployeesChange(reloadedEmployees);
+      clearMessage();
+      return { employees: reloadedEmployees, reloadFailed: false };
+    } catch {
+      onEmployeesChange(fallbackEmployees);
+      setMessage({ type: "error", text: reloadFailureMessage });
+      return { employees: fallbackEmployees, reloadFailed: true };
+    }
+  };
+
   // Mở modal ở chế độ tạo mới.
   const openCreateForm = () => {
     setEditingEmployee(undefined);
@@ -94,8 +113,10 @@ export default function EmployeePage({currentUser, employees, onEmployeesChange,
       return;
     }
 
+    clearMessage();
     try {
       let savedEmployee;
+      let usingLocalEmployeeApi = false;
       try {
         savedEmployee = editingEmployee ? await employeeApi.update(scopedEmployee) : await employeeApi.create(scopedEmployee);
       } catch (error) {
@@ -106,13 +127,20 @@ export default function EmployeePage({currentUser, employees, onEmployeesChange,
           message: error.message,
         });
         savedEmployee = sanitizeEmployee(scopedEmployee);
+        usingLocalEmployeeApi = true;
       }
 
       const nextEmployees = editingEmployee
         ? employees.map((item) => (item.id === savedEmployee.id ? savedEmployee : item)) : [...employees, savedEmployee];
-      onEmployeesChange(nextEmployees);
+      let reloadFailed = false;
+      if (usingLocalEmployeeApi) {
+        onEmployeesChange(nextEmployees);
+        clearMessage();
+      } else {
+        ({ reloadFailed } = await reloadEmployeesAfterSuccess(nextEmployees, EMPLOYEE_SAVE_RELOAD_FAILED_MESSAGE));
+      }
       setIsFormOpen(false);
-      setMessage({ type: "success", text: "Danh sách nhân viên đã được cập nhật." });
+      if (!reloadFailed) setMessage({ type: "success", text: "Danh sách nhân viên đã được cập nhật." });
       onLogAction?.(editingEmployee ? "employee.update.ui" : "employee.create.ui", {
         targetType: "employee",
         targetId: savedEmployee.id,
@@ -137,7 +165,9 @@ export default function EmployeePage({currentUser, employees, onEmployeesChange,
     const displayName = employee.employeeName || employee.employeeCode;
     if (!window.confirm(`Xóa nhân viên "${displayName}" khỏi danh sách?`)) return;
 
+    clearMessage();
     try {
+      let usingLocalEmployeeApi = false;
       try {
         await employeeApi.remove(employee.id);
       } catch (error) {
@@ -147,9 +177,17 @@ export default function EmployeePage({currentUser, employees, onEmployeesChange,
           status: error.status,
           message: error.message,
         });
+        usingLocalEmployeeApi = true;
       }
-      onEmployeesChange(employees.filter((item) => item.id !== employee.id));
-      setMessage({ type: "success", text: "Đã xóa nhân viên khỏi danh sách." });
+      const nextEmployees = employees.filter((item) => item.id !== employee.id);
+      let reloadFailed = false;
+      if (usingLocalEmployeeApi) {
+        onEmployeesChange(nextEmployees);
+        clearMessage();
+      } else {
+        ({ reloadFailed } = await reloadEmployeesAfterSuccess(nextEmployees, EMPLOYEE_DELETE_RELOAD_FAILED_MESSAGE));
+      }
+      if (!reloadFailed) setMessage({ type: "success", text: "Đã xóa nhân viên khỏi danh sách." });
       onLogAction?.("employee.delete.ui", {
         targetType: "employee",
         targetId: employee.id,
@@ -172,13 +210,14 @@ export default function EmployeePage({currentUser, employees, onEmployeesChange,
       return;
     }
 
-    setMessage(null);
+    clearMessage();
     setIsImporting(true);
 
     try {
       const importedEmployees = await importEmployeesFromExcel(file);
       const mergedEmployees = mergeEmployeeLists(employees, importedEmployees);
       let savedEmployees;
+      let usingLocalEmployeeApi = false;
       try {
         savedEmployees = await employeeApi.replaceAll(mergedEmployees);
       } catch (error) {
@@ -189,15 +228,27 @@ export default function EmployeePage({currentUser, employees, onEmployeesChange,
           message: error.message,
         });
         savedEmployees = mergedEmployees;
+        usingLocalEmployeeApi = true;
       }
-      onEmployeesChange(savedEmployees);
-      setMessage({
-        type: "success",
-        text: `Đã import ${importedEmployees.length} nhân viên. Danh sách hiện có ${savedEmployees.length} người.`,
-      });
+      let syncedEmployees = savedEmployees;
+      let reloadFailed = false;
+      if (usingLocalEmployeeApi) {
+        onEmployeesChange(savedEmployees);
+        clearMessage();
+      } else {
+        const reloadResult = await reloadEmployeesAfterSuccess(savedEmployees, EMPLOYEE_IMPORT_RELOAD_FAILED_MESSAGE);
+        syncedEmployees = reloadResult.employees;
+        reloadFailed = reloadResult.reloadFailed;
+      }
+      if (!reloadFailed) {
+        setMessage({
+          type: "success",
+          text: `Đã import ${importedEmployees.length} nhân viên. Danh sách hiện có ${syncedEmployees.length} người.`,
+        });
+      }
       onLogAction?.("employee.import.ui", {
         targetType: "employee",
-        detail: { importedCount: importedEmployees.length, totalCount: savedEmployees.length },
+        detail: { importedCount: importedEmployees.length, totalCount: syncedEmployees.length },
       });
     } catch (error) {
       setMessage({ type: "error", text: error.message });
@@ -214,7 +265,7 @@ export default function EmployeePage({currentUser, employees, onEmployeesChange,
       return;
     }
 
-    setMessage(null);
+    clearMessage();
     try {
       await exportEmployeesToExcel(employees);
       onLogAction?.("employee.export", {
