@@ -421,6 +421,7 @@ const diaryService = createDiaryService({
   nowIso,
   detectRecordBranch,
   findEmployeeForDiary,
+  listEmployeesForDiary: () => employeeService.listAll(),
   normalizeDiaryViolationTypes,
   sortDiaryEntries,
   serializeDiaryRow,
