@@ -1,0 +1,13 @@
+import "./responsive.css";
+import "./base.css";
+import "./layout.css";
+import "./components.css";
+import "./auth.css";
+import "./home-upload.css";
+import "./process.css";
+import "./tables.css";
+import "./forms-modals.css";
+import "./employee.css";
+import "./diary.css";
+import "./attachments.css";
+import "./account.css";

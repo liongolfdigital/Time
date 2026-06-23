@@ -1,0 +1,94 @@
+/* Generic tables / preview highlights */
+
+.table-shell td.preview-highlight-missingClock,
+.table-shell tbody tr:hover td.preview-highlight-missingClock {
+  background: #ffd8a8;
+}
+
+.table-shell { overflow: auto; max-height: 510px; border: 1px solid #e0e6df; border-radius: 11px; }
+
+table { width: max-content; min-width: 100%; border-collapse: separate; border-spacing: 0; font-size: 11px; }
+
+th { position: sticky; top: 0; z-index: 2; padding: 13px 14px; color: #50675e; background: #f1f5f1; border-bottom: 1px solid #dce4dc; text-align: left; white-space: nowrap; font-size: 10px; text-transform: uppercase; letter-spacing: 0.045em; }
+
+td { min-width: 86px; max-width: 230px; padding: 12px 14px; color: #40554d; border-bottom: 1px solid #edf0ec; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+th:nth-child(3), td:nth-child(3) { min-width: 180px; }
+
+th:nth-child(17), td:nth-child(17) { min-width: 220px; }
+
+tbody tr:last-child td { border-bottom: 0; }
+
+tbody tr:hover td { background: #fafbf9; }
+
+.table-shell td.preview-highlight-off,
+.table-shell tbody tr:hover td.preview-highlight-off {
+  background: #ffe0e0;
+  color: #b91c1c;
+}
+
+.table-shell td.preview-highlight-multiplePunches,
+.table-shell tbody tr:hover td.preview-highlight-multiplePunches {
+  background: #fef3c7;
+  color: #92400e;
+  box-shadow: inset 0 0 0 2px #f59e0b;
+  font-weight: 700;
+}
+
+.table-shell td.preview-highlight-earlyIn,
+.table-shell tbody tr:hover td.preview-highlight-earlyIn {
+  background: #ddebff;
+  color: #1d4ed8;
+}
+
+.table-shell td.preview-highlight-late,
+.table-shell tbody tr:hover td.preview-highlight-late {
+  background: #ffe8cc;
+  color: #c2410c;
+}
+
+.table-shell td.preview-highlight-early,
+.table-shell tbody tr:hover td.preview-highlight-early {
+  background: #ffe0e0;
+  color: #b91c1c;
+}
+
+.table-shell td.preview-highlight-overtime,
+.table-shell tbody tr:hover td.preview-highlight-overtime {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.table-shell td.preview-status-permitted,
+.table-shell tbody tr:hover td.preview-status-permitted {
+  box-shadow: inset 0 0 0 2px #16a34a;
+  font-weight: 700;
+}
+
+.table-shell td.preview-status-notPermitted,
+.table-shell tbody tr:hover td.preview-status-notPermitted {
+  box-shadow: inset 0 0 0 2px #dc2626;
+  font-weight: 700;
+}
+
+.table-shell td.preview-status-missingDiary,
+.table-shell tbody tr:hover td.preview-status-missingDiary {
+  box-shadow: inset 0 0 0 2px #f97316;
+  font-weight: 700;
+}
+
+.table-shell td.preview-status-fullDay,
+.table-shell tbody tr:hover td.preview-status-fullDay {
+  box-shadow: inset 0 0 0 2px #2563eb;
+  font-weight: 700;
+}
+
+.table-shell td.preview-status-autoTotal,
+.table-shell tbody tr:hover td.preview-status-autoTotal {
+  box-shadow: inset 0 0 0 2px #4c1d95;
+  font-weight: 700;
+}
+
+.empty-cell { color: #b5bdb9; }
+
+.empty-table { height: 100px; text-align: center; color: var(--muted); }

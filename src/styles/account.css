@@ -1,0 +1,78 @@
+/* Account page */
+.account-reset-modal { 
+  width: min(480px, 100%); 
+}
+
+.account-table-shell { 
+  max-height: 650px; 
+}
+
+.account-table { 
+  width: 100%;
+  min-width: 1120px; 
+}
+
+.account-table th, .account-table td { 
+  min-width: 130px; 
+}
+
+.account-table th:nth-child(2), .account-table td:nth-child(2) { 
+  min-width: 190px; 
+}
+
+.account-table .actions-column { 
+  min-width: 260px; 
+  width: 260px; 
+}
+
+.account-actions .row-actions { 
+  justify-content: flex-start; 
+}
+
+.account-actions .row-actions button {
+  width: auto;
+  min-width: 44px;
+  padding: 0 8px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.account-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.role-badge, .status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 74px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.role-admin { 
+  color: #fff; 
+  background: var(--green); 
+}
+
+.role-manager { 
+  color: var(--green); 
+  background: var(--green-soft); 
+  border: 1px solid #cfe4d6; 
+}
+
+.status-badge.active { 
+  color: #176044; 
+  background: #dff3e8; 
+}
+
+.status-badge.inactive { 
+  color: #8a5147; 
+  background: #f9e1dd; 
+}

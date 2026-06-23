@@ -1,0 +1,69 @@
+/* Forms / modal / password field */
+
+.modal-backdrop { position: fixed; inset: 0; z-index: 100; padding: 28px; display: grid; place-items: center; background: rgba(11, 36, 28, 0.56); backdrop-filter: blur(4px); }
+
+.employee-modal { width: min(900px, 100%); max-height: calc(100vh - 56px); overflow: auto; padding: 28px; border-radius: 20px; background: #fff; box-shadow: 0 30px 90px rgba(8, 30, 23, 0.3); }
+
+.modal-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
+
+.modal-heading .eyebrow { margin-bottom: 6px; }
+
+.modal-heading h2 { margin: 0; font-size: 23px; letter-spacing: -0.035em; }
+
+.form-field { display: flex; flex-direction: column; gap: 7px; }
+
+.form-field > span { color: #54675f; font-size: 10px; font-weight: 750; }
+
+.form-field input { width: 100%; height: 42px; padding: 0 12px; color: var(--ink); border: 1px solid #d6dfd8; border-radius: 9px; outline: 0; background: #fafbf9; font-size: 11px; }
+
+.form-field select, .form-field textarea { width: 100%; padding: 0 12px; color: var(--ink); border: 1px solid #d6dfd8; border-radius: 9px; outline: 0; background: #fafbf9; font: inherit; font-size: 11px; }
+
+.form-field select { height: 42px; }
+
+.form-field textarea { min-height: 82px; padding-top: 11px; resize: vertical; }
+
+.form-field input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(28, 107, 85, 0.09); background: #fff; }
+
+.form-field select:focus, .form-field textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(28, 107, 85, 0.09); background: #fff; }
+
+.form-field-wide { grid-column: span 3; }
+
+.form-error { margin: 14px 0 0; color: var(--error); font-size: 11px; }
+
+.modal-actions { margin-top: 24px; padding-top: 18px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #e8ece7; }
+
+.password-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.password-field input { min-width: 0; }
+
+.password-field button {
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 11px;
+  color: var(--green);
+  border: 1px solid #cbd8ce;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
+}
+
+.form-field input:disabled,
+.form-field select:disabled {
+  color: #718078;
+  background: #eef2ed;
+  cursor: not-allowed;
+}

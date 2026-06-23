@@ -1,0 +1,17 @@
+node_modules
+dist
+data/
+.vite
+*.local
+.env
+.env.local
+.env.*.local
+*.sqlite
+*.sqlite3
+*.db
+uploads/
+server/uploads/
+local-data/
+
+.vercel
+.env*

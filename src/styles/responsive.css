@@ -1,0 +1,103 @@
+@media (max-width: 900px) {
+  .privacy-badge, .session-badge { display: none; }
+  .hero { grid-template-columns: 1fr; gap: 30px; padding-top: 55px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .steps::before { display: none; }
+  .step { align-items: flex-start; gap: 9px; }
+  .step > span { width: 34px; height: 34px; border-width: 3px; }
+  .step small { display: none; }
+  .download-card { grid-template-columns: auto 1fr; }
+  .download-button { grid-column: 1 / -1; width: 100%; }
+  .employee-form-grid { grid-template-columns: repeat(2, 1fr); }
+  .form-field-wide { grid-column: span 2; }
+  .branch-form-grid { grid-template-columns: 1fr; }
+  .branch-editor-row,
+  .branch-shift-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .branch-editor-row .weekday-picker,
+  .branch-shift-row .weekday-picker {
+    grid-column: 1 / -1;
+  }
+  .data-status-grid { grid-template-columns: 1fr; }
+  .diary-checkbox-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .diary-detail-grid { grid-template-columns: repeat(2, 1fr); }
+  .diary-detail-reason { grid-column: span 2; }
+  .account-form-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .topbar { height: auto; min-height: 70px; padding: 10px 14px; flex-wrap: wrap; gap: 9px; }
+  .privacy-badge { display: none; }
+  .main-nav { width: 100%; order: 3; }
+  .main-nav button { flex: 1; justify-content: center; padding: 0 8px; }
+  main, footer { width: min(100% - 28px, 1180px); }
+  .hero { min-height: auto; padding: 44px 0 38px; }
+  .hero h1 { font-size: 42px; }
+  .hero-copy > p { font-size: 13px; }
+  .steps { gap: 3px; }
+  .step { flex-direction: column; }
+  .step strong { font-size: 10px; }
+  .workspace-card { padding: 20px; border-radius: 17px; }
+  .card-heading { align-items: flex-start; }
+  .section-number { display: none; }
+  .card-heading p { line-height: 1.5; }
+  .dropzone { min-height: 260px; padding: 22px 16px; }
+  .card-actions { flex-direction: column-reverse; align-items: stretch; gap: 16px; }
+  .security-note { justify-content: center; }
+  .process-button { width: 100%; }
+  .preview-card { padding: 20px 14px 16px; border-radius: 17px; }
+  .preview-heading { align-items: flex-end; }
+  .preview-heading h2 { font-size: 18px; }
+  .download-card { padding: 22px; grid-template-columns: 1fr; text-align: center; }
+  .download-icon { margin: 0 auto; }
+  footer { flex-direction: column; align-items: center; gap: 7px; }
+  .registration-status { margin-top: -8px; grid-template-columns: auto 1fr; }
+  .data-status-grid { margin-top: -8px; }
+  .data-status-grid .registration-status { margin-top: 0; }
+  .registration-status .text-button { grid-column: 1 / -1; width: 100%; border-top: 1px solid #dfe6df; }
+  .employee-page { width: min(100% - 20px, 1440px); }
+  .page-intro { padding: 38px 4px 24px; flex-direction: column; align-items: stretch; gap: 22px; }
+  .page-intro h1 { font-size: 36px; }
+  .employee-stat { min-width: 0; }
+  .employee-card { padding: 15px; border-radius: 16px; }
+  .toolbar-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .toolbar-actions .button { width: 100%; padding: 0 10px; }
+  .toolbar-actions .button-primary { grid-column: 1 / -1; }
+  .employee-filters { align-items: stretch; }
+  .search-field, .select-field { width: 100%; min-width: 0; }
+  .employee-table-meta { flex-direction: column; gap: 4px; }
+  .modal-backdrop { padding: 10px; align-items: end; }
+  .employee-modal { max-height: calc(100vh - 20px); padding: 20px; border-radius: 18px 18px 10px 10px; }
+  .employee-form-grid { grid-template-columns: 1fr; }
+  .form-field-wide { grid-column: span 1; }
+  .branch-editor-heading { align-items: stretch; flex-direction: column; }
+  .branch-editor-row,
+  .branch-shift-row {
+    grid-template-columns: 1fr;
+  }
+  .branch-editor-row .weekday-picker,
+  .branch-shift-row .weekday-picker {
+    grid-column: auto;
+  }
+  .diary-form-grid { grid-template-columns: 1fr; }
+  .diary-form-grid .form-field-wide { grid-column: span 1; }
+  .diary-checkbox-grid { grid-template-columns: 1fr; }
+  .employee-lookup-summary { flex-direction: column; gap: 10px; }
+  .diary-modal .form-file-dropzone { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+  .diary-modal .form-file-dropzone .form-file-drop-copy { width: 100%; align-items: center; }
+  .diary-modal .form-file-dropzone .button { width: 100%; }
+  .diary-detail-grid { grid-template-columns: 1fr; }
+  .diary-detail-reason { grid-column: span 1; }
+  .attachment-heading { align-items: stretch; flex-direction: column; }
+  .attachment-heading .button { width: 100%; }
+  .attachment-uploader { max-width: none; }
+  .attachment-item { grid-template-columns: auto minmax(0, 1fr); }
+  .attachment-actions { grid-column: 1 / -1; justify-content: flex-end; }
+  .attachment-preview iframe { height: 420px; }
+  .modal-actions .button { flex: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}

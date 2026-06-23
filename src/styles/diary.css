@@ -1,0 +1,93 @@
+/* Diary page */
+
+.diary-filters .search-field { min-width: 290px; }
+
+.select-field input { width: 100%; min-width: 0; border: 0; outline: 0; color: var(--ink); background: transparent; font-size: 11px; }
+
+.date-field { min-width: 165px; }
+
+.diary-table { min-width: 2030px; }
+
+.diary-table th:nth-child(7), .diary-table td:nth-child(7) { min-width: 250px; max-width: 340px; }
+
+.diary-table th:nth-child(9), .diary-table td:nth-child(9) { min-width: 180px; max-width: 240px; white-space: normal; }
+
+.diary-table th:nth-child(10), .diary-table td:nth-child(10) { min-width: 230px; max-width: 320px; }
+
+.diary-table th:nth-child(11), .diary-table td:nth-child(11) { min-width: 190px; max-width: 250px; }
+
+.diary-table th:nth-child(12), .diary-table td:nth-child(12) { min-width: 120px; max-width: 160px; }
+
+.diary-table .actions-column { min-width: 130px; width: 130px; }
+
+.diary-clickable-row { cursor: pointer; }
+
+.diary-clickable-row.is-selected td { background: #fff8f5; }
+
+.diary-table .diary-selection-column { min-width: 48px; width: 48px; padding: 8px; text-align: center; }
+
+.diary-selection-column input { width: 17px; height: 17px; margin: 0; vertical-align: middle; accent-color: var(--green); cursor: pointer; }
+
+.diary-selection-column input:disabled { cursor: not-allowed; }
+
+.button.diary-bulk-delete { color: var(--error); border-color: #efcbc6; background: #fff7f5; }
+
+.button.diary-bulk-delete:hover:not(:disabled) { border-color: var(--error); background: #fff0ed; }
+
+.diary-selection-meta { color: var(--error); }
+
+.diary-tag-list { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+
+.diary-tag { display: inline-flex; align-items: center; min-height: 22px; padding: 4px 8px; color: #176044; border: 1px solid #cbe4d4; border-radius: 999px; background: #edf8f1; font-size: 9px; font-weight: 850; line-height: 1.2; }
+
+.diary-tag-off { color: #6c5620; border-color: #eadca7; background: #fff7d9; }
+
+.diary-form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+
+.diary-form-grid .form-field-wide { grid-column: span 2; }
+
+.diary-form-files { min-width: 0; }
+
+.diary-violation-field { gap: 9px; }
+
+.diary-checkbox-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+
+.diary-checkbox-card { min-height: 43px; padding: 9px 10px; display: flex; align-items: center; gap: 8px; color: #52675e; border: 1px solid #d8e3db; border-radius: 10px; background: #fafbf9; font-size: 11px; font-weight: 800; cursor: pointer; transition: border-color 150ms ease, background 150ms ease, color 150ms ease; }
+
+.diary-checkbox-card:hover { border-color: #bcd6c6; background: #f4faf6; }
+
+.diary-checkbox-card.selected { color: var(--green-dark); border-color: #a9d1b8; background: #eaf6ef; }
+
+.diary-checkbox-card input { flex: 0 0 auto; width: 15px; height: 15px; min-height: 0; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none; accent-color: var(--green); }
+
+.employee-lookup-summary { padding: 11px 13px; display: flex; gap: 30px; border: 1px solid #dce7df; border-radius: 10px; background: #f4f9f5; }
+
+.employee-lookup-summary > div { min-width: 120px; display: flex; flex-direction: column; gap: 4px; }
+
+.employee-lookup-summary span { color: var(--muted); font-size: 9px; font-weight: 750; text-transform: uppercase; letter-spacing: 0.04em; }
+
+.employee-lookup-summary strong { color: var(--green); font-size: 11px; }
+
+.creator-field small { color: var(--muted); font-size: 9px; }
+
+.diary-detail-modal { width: min(1040px, 100%); }
+
+.diary-detail-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+.diary-detail-grid > div { min-height: 72px; padding: 13px 15px; display: flex; flex-direction: column; gap: 7px; border: 1px solid #e0e6df; border-radius: 11px; background: #fafbf9; }
+
+.diary-detail-grid span { color: var(--muted); font-size: 9px; font-weight: 750; text-transform: uppercase; letter-spacing: 0.045em; }
+
+.diary-detail-grid strong { color: var(--ink); font-size: 12px; line-height: 1.45; }
+
+.diary-detail-grid small { color: var(--muted); font-size: 9px; }
+
+.diary-detail-grid .diary-tag-list { align-items: flex-start; }
+
+.diary-detail-grid .diary-tag { color: #176044; font-size: 9px; text-transform: none; letter-spacing: 0; }
+
+.diary-detail-reason { grid-column: span 4; }
+
+.status-permitted { color: var(--green) !important; }
+
+.status-not-permitted { color: var(--error) !important; }
