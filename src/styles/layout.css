@@ -26,6 +26,27 @@
 
 .brand-button { border: 0; padding: 0; background: transparent; cursor: pointer; }
 
+.brand-logo {
+  width: 43px;
+  height: 43px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(23, 52, 45, 0.1);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(28, 107, 85, 0.14);
+}
+
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
 .main-nav {
   display: flex;
   align-items: center;

@@ -414,7 +414,9 @@ export default function App() {
     <div className="app-shell">
       <header className="topbar">
         <button className="brand brand-button" type="button" onClick={() => openPage(defaultPageForUser(currentUser))} aria-label="Trang chủ Chấm công nội bộ">
-          <span className="brand-mark"><ClockIcon size={25} /></span>
+          <span className="brand-logo">
+            <img src="/images/LionBlk.png" alt="Lion Golf" />
+          </span>
           <span><strong>Chấm công</strong><small>Nội bộ</small></span>
         </button>
 
